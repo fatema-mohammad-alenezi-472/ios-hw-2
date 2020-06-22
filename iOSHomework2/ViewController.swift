@@ -9,18 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var membersNamesArray  : [String] = [""]
+    var membersNamesArray  : [String] = []
     
     var convertToLetter = true
     @IBOutlet weak var secretSocietyNameLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBAction func addMember(_ sender: Any) {
         
-        let member = nameTextField.text!
+        var member = nameTextField.text!
         
         // MARK: -   1️⃣ تحت الخط membersNamesArray إلي المصفوفه memberقم بإضافة المتغير
-        
-        
+        membersNamesArray.append(member)
+       
         
         // MARK: -   النهاية
         
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         
         // MARK: -  4️⃣ functionCall داخل المتغير  secretNameLetter قم باستدعاء الدالة
         
-        var functionCall = ""
+        let functionCall = secretNameLetter(memberNameArray: membersNamesArray)
         
         
         // MARK: -   النهاية
@@ -52,8 +52,7 @@ class ViewController: UIViewController {
         
         // MARK: -  5️⃣ functionCall داخل المتغير  secretNameEmoji قم باستدعاء الدالة
         
-        var functionCall = ""
-        
+        let functionCall = encryptWith(emoji: true, array: membersNamesArray)
         // MARK: -   النهاية
         
         secretSocietyNameLabel.text =  functionCall
@@ -65,6 +64,17 @@ class ViewController: UIViewController {
     
     
     // MARK: - 2️⃣ تحت هذا الخط secretNameLetter قم بكتابة الداله
+    func secretNameLetter(memberNameArray: [String]) -> String
+    {
+      var firstletter = ""
+        
+        for i in 0..<membersNamesArray.count
+        {
+            firstletter += membersNamesArray[i].prefix(1)
+        }
+   return firstletter
+    }
+    
     
     
     // MARK: -   النهاية
@@ -74,11 +84,59 @@ class ViewController: UIViewController {
     
     
     // MARK: - 3️⃣ تحت هذا الخط secretNameEmoji قم بكتابة الداله
+    func secretNameEmoji(array:[String]) -> String {
+        let secret : String = ""
+        let emojiLetter: [String: String] =
+        [
+            "A": "🤡",
+            "B": "🤯",
+            "C": "🎃",
+            "D": "🐒",
+            "D": "🐌",
+            "E": "🐭",
+            "F": "💝",
+            "G": "🎆",
+            "H": "🎾",
+            "I": "🍿",
+            "J": "🍩",
+            "K": "☕️",
+            "L": "🍼",
+            "M": "🍉",
+            "N": "🌈",
+            "O": "⛄️",
+            "P": "🌶",
+            "Q": "🌸",
+            "R": "🍀",
+            "S": "🐸",
+            "T": "👑",
+            "U": "👛",
+            "V": "🧢",
+            "W": "😈",
+            "X": "😽",
+            "Y": "👺",
+            "Z": "🥵",  ]
+        
+        for member in array {
+            let prefix = member.prefix(1)
+        }
+        return secret
+        
+    }
     
-    
+        
     // MARK: -   النهاية
     
-    
+    // bounus
+    func encryptWith(emoji:Bool, array: [String]) -> String {
+        if emoji{
+            return secretNameEmoji(array: array)
+        }
+        else{
+            return secretNameLetter(memberNameArray: array)
+        }
+    }
+
+
+
     
 }
-
